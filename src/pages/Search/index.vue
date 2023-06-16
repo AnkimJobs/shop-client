@@ -1,10 +1,13 @@
 <template>
-  <div>Search</div>
+  <div>Search
+    <h1>{{ keyword3 }}</h1>
+</div>
 </template>
 
 <script>
 export default {
   name: 'Search',
+  props: ['keyword3','keyword4']
 }
 </script>
 
