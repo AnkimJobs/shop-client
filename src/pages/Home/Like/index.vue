@@ -58,7 +58,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "Like",
 };
 </script>
 

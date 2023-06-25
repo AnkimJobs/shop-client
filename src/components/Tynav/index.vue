@@ -1692,8 +1692,15 @@
 </template>
 
 <script>
+
+
 export default {
   name: "Tynav",
+  computed :{
+    categoryList(){
+      return this.$store.state.home.categoryList
+    }
+  }
 };
 </script>
 

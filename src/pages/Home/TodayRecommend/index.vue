@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "TodayRecommend",
 };
 </script>
 
