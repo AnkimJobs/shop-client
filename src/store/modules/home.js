@@ -5,19 +5,19 @@ const state ={
 
 }
 const mutations={
-    RECEIVE_BASE_CATGORY_LIST(state, categoryList){
-        state.baseCategoryList = categoryList
+    RECEIVE_BASE_CATGORY_LIST(state, baseCategoryList){
+        state.baseCategoryList =  baseCategoryList.splice(0,15)
     }
 
-}
+} 
 const actions={
     async getBaseCategoryList({commit}){
         const result = await reqBaseCategoryList();
         if (result.code === 200){
-            const categoryList = result.data 
-            commit( 'RECEIVE_BASE_CATGORY_LIST',categoryList )
+            const baseCategoryList = result.data 
+            commit( 'RECEIVE_BASE_CATGORY_LIST',baseCategoryList )
         }
-    }
+    } 
     
 }
 const getters={
