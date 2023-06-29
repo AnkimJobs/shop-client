@@ -2,29 +2,11 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">家用电器</h3>
+        <h3 class="fl">{{ floor.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
-            <li class="active">
-              <a href="#tab1" data-toggle="tab">热门</a>
-            </li>
-            <li>
-              <a href="#tab2" data-toggle="tab">大家电</a>
-            </li>
-            <li>
-              <a href="#tab3" data-toggle="tab">生活电器</a>
-            </li>
-            <li>
-              <a href="#tab4" data-toggle="tab">厨房电器</a>
-            </li>
-            <li>
-              <a href="#tab5" data-toggle="tab">应季电器</a>
-            </li>
-            <li>
-              <a href="#tab6" data-toggle="tab">空气/净水</a>
-            </li>
-            <li>
-              <a href="#tab7" data-toggle="tab">高端电器</a>
+            <li class="active" v-for="nav in floor.navList" :key="nav.text">
+              <a :href="nav.url" data-toggle="tab">{{ nav.text }}</a>
             </li>
           </ul>
         </div>
@@ -34,31 +16,26 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li>节能补贴</li>
-                <li>4K电视</li>
-                <li>空气净化器</li>
-                <li>IH电饭煲</li>
-                <li>滚筒洗衣机</li>
-                <li>电热水器</li>
+                <li v-for="keyword in floor.keywords" :key="keyword">
+                  {{ keyword }}
+                </li>
               </ul>
-              <img src="./images/floor-1-1.png" />
+              <img :src="floor.imgUrl" />
             </div>
             <div class="floorBanner">
-              <div class="swiper-container" id="floor1Swiper">
+              <div class="swiper-container" ref="swiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b01.png" />
+                  <div
+                    class="swiper-slide"
+                    v-for="carousel in floor.carouselList"
+                    :key="carousel.id"
+                  >
+                    <img :src="carousel.imageUrl" />
                   </div>
-                  <!-- <div class="swiper-slide">
-                    <img src="./images/floor-1-b02.png" />
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b03.png" />
-                  </div> -->
                 </div>
                 <!-- 如果需要分页器 -->
                 <div class="swiper-pagination"></div>
- 
+
                 <!-- 如果需要导航按钮 -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -66,23 +43,24 @@
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
-              <div class="floor-conver-pit">
-                <img src="./images/floor-1-2.png" />
+              <div class="floor-conver-pit"> 
+                <!-- 结构不一样 所以不能遍历  -->
+                <img :src="floor.recommendList[0]" />
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-3.png" />
+                <img :src="floor.recommendList[1]" />
               </div>
             </div>
             <div class="split center">
-              <img src="./images/floor-1-4.png" />
+              <img :src="floor.bigImg" />
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-5.png" />
+                <img :src="floor.recommendList[2]" />
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-6.png" />
+                <img :src="floor.recommendList[3]" />
               </div>
             </div>
           </div>
@@ -93,8 +71,40 @@
 </template>
 
 <script>
+
+import Swiper from "swiper";
 export default {
   name: "Floor",
+  props: {
+    floor: Object,
+  },
+  mounted(){
+    //第一次书写Swiper的时候，在mounted当中书写是不可以
+    //第一次书写轮播图的时候，是在当前组件内部发请求，动态渲染解构（前提至少服务器数据需要回来），因此当时的写法不能在mounted 
+    //这次请求的数据不是在floor内部请求  因为请求的是父组件发的 数据是父组件通过props传递过来的 子组件早已遍历完了 在mounted之前结构早已经有了
+    new Swiper(this.$refs.swiper, {
+          // direction: 'vertical', // 垂直切换选项
+          loop: true, // 循环模式选项
+          autoplay:{
+            delay :4000,
+            disableOnInteraction:false,
+          }, //自动轮播
+
+          // 如果需要分页器
+          pagination: {
+            el: ".swiper-pagination",
+            disableOnInteraction: false,
+          },
+
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+    
+        });
+  },
+  
 };
 </script>
 

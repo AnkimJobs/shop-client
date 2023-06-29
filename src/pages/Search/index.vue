@@ -1,6 +1,6 @@
 <template>
-  <div>Search
-    <h1>{{ keyword3 }}</h1>
+  <div>
+    <Tynav />
 </div>
 </template>
 

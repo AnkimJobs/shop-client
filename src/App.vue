@@ -19,7 +19,8 @@ export default {
     // getCategoryList().then((result)=>{
     //   console.log('result',result)
     // }) 
-    this.$store.dispatch('getBaseCategoryList')
+    this.$store.dispatch('getCategoryList') 
+    // this.$store.dispatch('getBannerList') //放着此处 用历史回退不回重新更新
   },
   components:{
     Header,

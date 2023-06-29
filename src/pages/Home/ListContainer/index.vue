@@ -3,20 +3,15 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
+        <div class="swiper-container" ref="swiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+            <div
+              class="swiper-slide"
+              v-for="banner in bannerList"
+              :key="banner.id"
+            >
+              <img :src="banner.imageUrl" />
             </div>
-            <!-- <div class="swiper-slide">
-              <img src="./images/banner2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner4.jpg" />
-            </div> -->
           </div>
           <!-- 如果需要分页器 -->
           <div class="swiper-pagination"></div>
@@ -24,8 +19,12 @@
           <!-- 如果需要导航按钮 -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
+
+          <!-- 如果需要滚动条 -->
+          <!-- <div class="swiper-scrollbar"></div> -->
         </div>
       </div>
+
       <div class="right">
         <div class="news">
           <h4>
@@ -98,10 +97,68 @@
     </div>
   </div>
 </template>
-
 <script>
+import Swiper from "swiper";
+// import "swiper/js/swiper.min,js";
+import { mapState } from "vuex";
+import { watch } from "vue";
+
 export default {
   name: "ListContainer",
+  computed: {
+    ...mapState({
+      bannerList: (state) => state.home.bannerList,
+    }),
+  },
+  mounted() {
+    this.$store.dispatch('getBannerList') 
+  },
+
+  /* 在列表数据已经又了，且已经更新显示了? 
+  数据变化后 ==>同步调用监视的回调 =>最后异步更新界面
+  watch: bannerList  此时数据已经有了 但界面还没有更新 
+  nextTick:界面更新后执行回调
+  */
+
+  watch: {
+    bannerList() {
+      //此时只是数据有了，但界面还没有更新
+      // swiper对象必须在列表显示之后创建菜又效果
+
+      /*  
+    $nextTick(callback)
+    将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。*/
+      this.$nextTick(() => {
+        //在此时数据变化导致界面更新完成后执行回调
+        // new Swiper ('.swiper-container', {//这种方式会影响当前页面其他的轮播效果
+        new Swiper(this.$refs.swiper, {
+          // direction: 'vertical', // 垂直切换选项
+          loop: true, // 循环模式选项
+          autoplay:{
+            delay :4000,
+            disableOnInteraction:false,
+          }, //自动轮播
+
+          // 如果需要分页器
+          pagination: {
+            el: ".swiper-pagination",
+            disableOnInteraction: false,
+          },
+
+          // 如果需要前进后退按钮
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+
+          // 如果需要滚动条
+          // scrollbar: {
+          //   el: '.swiper-scrollbar',
+          // },
+        });
+      });
+    },
+  },
 };
 </script>
 
@@ -174,8 +231,7 @@ export default {
           position: relative;
           cursor: pointer;
           width: 25%;
-p
-          .list-item {
+          p .list-item {
             background-image: url(../images/icons.png);
             width: 61px;
             height: 40px;

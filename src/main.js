@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import Tynav from '@/components/Tynav'
 import store from '@/store'
+import "swiper/css/swiper.css";  //全局 所有组件都能用上这个样式
+import '@/mock/mockServer'
+
 
 
 

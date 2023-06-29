@@ -78,11 +78,12 @@ export default {
       const {keyword} = this
       const location ={
         name: "search",
+        query: this.$route.query
         }
       
       if (keyword){
         location.params = {keyword}
-        location.query = {keyword2: this.keyword.toUpperCase()}
+        // location.query = {keyword2: this.keyword.toUpperCase()}
       }
 
      
