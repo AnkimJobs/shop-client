@@ -29,9 +29,9 @@
         <!-- <a class="logo" title="尚品汇" href="###" target="_blank">
           <img src="./images/logo.png" alt="" />
         </a> -->
-        <router-link to="/" class="logo"  >
+        <router-link to="/" class="logo">
           <img src="./images/logo.png" alt="" />
-          </router-link>
+        </router-link>
       </h1>
       <div class="searchArea">
         <form action="/xxx" class="searchForm">
@@ -39,17 +39,12 @@
             type="text"
             id="autocomplete"
             class="input-error input-xxlarge"
-            v-model.trim="keyword"
-
-
-     />
+            v-model.trim="keyword" 
+          />
           <!-- <button class="sui-btn btn-xlarge btn-danger" type="button" @click="search"> -->
-          <button class="sui-btn btn-xlarge btn-danger"   @click.prevent="search">
-
-
+          <button class="sui-btn btn-xlarge btn-danger" @click.prevent="search">
             搜索
           </button>
-          
         </form>
       </div>
     </div>
@@ -59,41 +54,53 @@
 <script>
 export default {
   name: "Header",
-  data(){
-    return{
-      keyword:'',
-    }
+  data() {
+    return {
+      keyword: "",
+    };
   },
-  methods:{
-    search(){
+  methods: {
+    search() {
       // this.$router.push(`/search/${this.keyword}`)
-      
+
       // this.$router.push({
       //   name:'search',
       //   params: {keyword: this.keyword},
       //   query: {keyword2: this.keyword.toUpperCase()}
       // })
 
-
-      const {keyword} = this
-      const location ={
+      const { keyword } = this;
+      const location = {
         name: "search",
-        query: this.$route.query
-        }
-      
-      if (keyword){
-        location.params = {keyword}
+        query: this.$route.query,
+      };
+
+      if (keyword) {
+        location.params = { keyword };
         // location.query = {keyword2: this.keyword.toUpperCase()}
       }
 
-     
       // router.push(location, onComplete?, onAbort?)
       // router.push(location).then(onComplete).catch(onAbort)
-      this.$router.push(location)
-      
-    }
-  } 
-}; 
+      /*   
+      从其他页到搜索页，push() 
+		  从搜索页到搜索页, 使用replace() */
+      if(this.$route.name==='search'){
+        this.$router.replace(location);
+      }else{
+      this.$router.push(location);}
+      },
+  },
+  mounted(){//异步操作
+    this.$bus.$on('removeKeyword',()=> //用回调函数是想用mounted的this
+    {this.keyword=''})
+
+
+  },
+  beforeDestroy() {
+      this.$bus.$off('removeKeyword')
+    },
+};
 </script>
 
 <style lang="less" scoped>

@@ -6,7 +6,7 @@
         <div class="fr">
           <ul class="nav-tabs clearfix">
             <li class="active" v-for="nav in floor.navList" :key="nav.text">
-              <a :href="nav.url" data-toggle="tab">{{ nav.text }}</a>
+              <a href="javascript:"  data-toggle="tab">{{ nav.text }}</a>
             </li>
           </ul>
         </div>

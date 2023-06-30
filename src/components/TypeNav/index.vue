@@ -82,7 +82,7 @@ import { mapState } from "vuex";
 import throttle from "lodash/throttle"; //只引入需要的模块 减小打包文件
 //
 export default {
-  name: "Tynav",
+  name: "TypeNav",
   data() {
     const path = this.$route.path;
     return {
@@ -118,7 +118,7 @@ export default {
   },
   methods: {
     hideFirst() {
-      this.currentIndex = -1;
+      this.currentIndex = -2;
       if (this.$route.path != "/") {
         this.isShowFirst = false;
       }
@@ -163,9 +163,17 @@ export default {
           query, 
           params: this.$route.params
         } 
-        this.$router.push(location);
+        /*   
+        从其他页到搜索页，push() 
+		    从搜索页到搜索页, 使用replace() */
+        if(this.$route.name==='search'){
+          this.$router.replace(location);
+        }else{
+          this.$router.push(location);}
+        //隐藏一级分类列表
+        this.hideFirst()
       }
-    },
+    }
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Tynav />
+    <TypeNav />
     <list-container></list-container>
     <today-recommend ></today-recommend>
     <like></like>
