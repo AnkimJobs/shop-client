@@ -9,7 +9,7 @@
     :class="{active:item===myCurrentPage}" @click="setCurrentPage(item)" :disabled="item===myCurrentPage"> {{item}}</button> -->
     
     <button  v-for="item in startEndArr" :key="item"
-    :class="{active:item===myCurrentPage}" @click="currentPage(item)" :disabled="item===myCurrentPage"> {{item}}</button>
+    :class="{active:item===myCurrentPage}" @click="setCurrentPage(item)" :disabled="item===myCurrentPage"> {{item}}</button>
     
 
     <button class="disabled" v-if="startEnd.end<(totalPages-1)">...</button>
