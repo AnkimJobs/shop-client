@@ -41,6 +41,10 @@ const getters={
     },
     attrsList(state){
         return state.productList.attrsList ||[]
+    },
+    // 总数量 初始无值 为0
+    total(state){
+        return state.productList.total || 0
     }
 
 }

@@ -76,7 +76,7 @@
                   </div>
                   <div class="price">
                     <strong>
-                      <em>¥</em>
+                      <em>¥ </em> 
                       <i>{{ goods.price }}</i>
                     </strong>
                   </div>
@@ -97,35 +97,15 @@
               
             </ul>
           </div>
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+          
+          <Pagination
+            :currentPage="options.pageNo"
+            :total="total"
+            :pageSize="options.pageSize"
+            :showPageNo="5"
+            @currentChange="getShopList"
+            
+          />
         </div>
       </div>
     </div>
@@ -176,7 +156,7 @@
       //   goodsList: state => state.search.productList.goodsList || []
       // })
    
-      ...mapGetters(['goodsList']),
+      ...mapGetters(['goodsList','total']),
       // 得到包含当前分类项标识oderFlag和排序方式orderType的数组
       orderArr() {
         return this.options.order.split(':')}
@@ -208,6 +188,11 @@
     },
     },
     methods:{
+      //改变当前页码
+      // currentChange(page){
+      //   // this.options.pageNo=page
+      //   this.getShopList(page)
+      // },
       //设置新的排序方式
       setOrder(orderFlag){
         //要改这个值 就不能用const 用let
@@ -302,7 +287,9 @@
         }
       },
       /* 异步获取商品列表 */
-      getShopList(){
+      getShopList(page=1){
+        //更新options中的pageNo
+        this.options.pageNo=page 
         this.$store.dispatch('getProductList',this.options)
       }
     },
