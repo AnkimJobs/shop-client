@@ -72,7 +72,8 @@
               <li class="yui3-u-1-5" v-for="goods in goodsList" :key="goods .id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="javascript:" ><img :src="goods.defaultImg" /></a>
+                    <router-link :to="`/detail/${goods.id}`" > <img :src="goods.defaultImg" /></router-link>
+                    <!-- <a href="javascript:" ><img :src="goods.defaultImg" /></a> -->
                   </div>
                   <div class="price">
                     <strong>
@@ -82,7 +83,8 @@
                   </div>
                   <div class="attr">
                     <!-- <a target="_blank" href="item.html" >{{ goods.title }}</a> 其他的东西留下还是去掉 看实现的功能 -->
-                    <a  href="javascript:" >{{ goods.title }}</a>
+                    <router-link :to="`/detail/${goods.id}`">{{ goods.title }}</router-link>
+                    <!-- <a  href="javascript:" >{{ goods.title }}</a> -->
 
                   </div>
                   <div class="commit">
@@ -174,18 +176,18 @@
 
     // },
     // 该回调将会在侦听开始之后被立即调用
-    $route : {
-      handler() {
-        this.updateParams()
-        this.getShopList()},
-      immediate: true //  初始话立即执行第一次  计算属性初始化也会执行
-      /* 
-      与computed的区别：
-      1.异步操作
-      2，深度监视 deep： true
-     
-      */
-    },
+      $route : {
+        handler() {
+          this.updateParams()
+          this.getShopList()},
+        immediate: true //  初始话立即执行第一次  计算属性初始化也会执行
+        /* 
+        与computed的区别：
+        1.异步操作
+        2，深度监视 deep： true
+      
+        */
+      },
     },
     methods:{
       //改变当前页码

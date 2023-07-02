@@ -1,4 +1,4 @@
-import { result } from "lodash"
+import { method, result } from "lodash"
 import ajax from "./ajax"
 import mockAjax from './mockAjax'
 
@@ -20,6 +20,25 @@ export function reqCategoryList(){
 //搜索商品
 // /api/list  POST
 export const reqSearch = (searchParams)=>ajax.post('/list',searchParams)
+
+//商品详情 
+// /api/item/{ skuId }  GET
+export const reqDetail = (skuId)=>{
+   return ajax({
+        url:`/item/${skuId}`,
+        method:'get'
+   })
+}
+//添加到购物车(对已有物品进行数量改动)
+// /api/cart/addToCart/{ skuId }/{ skuNum }
+// POST
+export const reqAddOrUpdateCart = (skuId,skuNum )=>{
+    return ajax({
+         url:`/cart/addToCart/${ skuId }/${ skuNum }`,
+         method:'post'
+    })
+ }
+   
 
 
 /* 
