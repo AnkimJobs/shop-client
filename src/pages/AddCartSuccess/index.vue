@@ -24,6 +24,17 @@
 <script>
   export default {
     name: 'AddCartSuccess',
+    data() {
+      return {
+        skuInfo:{},
+        skuNum:'' 
+
+      }
+    },
+    beforeMount(){
+      this.skuNum = this.$route.query.skuNum
+      this.skuInfo = sessionStorage.getItem('SKUINFO_KEY')
+    }
   }
 </script>
 

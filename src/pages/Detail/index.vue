@@ -84,9 +84,9 @@
             <div class="cartWrap"> 
               <div class="controls">
                 <!-- <input autocomplete="off" class="itxt" v-model.trim="num" @change="num=num>1?parseInt(num):1"/> -->
-                <input autocomplete="off" class="itxt" v-model.trim="num" @change="num=num>1?Math.ceil(num):1"/>
-                <a href="javascript:" class="plus" @click="num++">+</a>
-                <a href="javascript:" class="mins"  @click="num>1?num--:num=1">-</a>
+                <input autocomplete="off" class="itxt" v-model.trim="skuNum" @change="skuNum=skuNum>1?Math.ceil(skuNum):1"/>
+                <a href="javascript:" class="plus" @click="skuNum++">+</a>
+                <a href="javascript:" class="mins"  @click="skuNum>1?skuNum--:skuNum=1">-</a>
               </div>
               <div class="add">
                 <a href="javascript:" @click="addShopCart">加入购物车</a>
@@ -344,7 +344,7 @@ export default {
   data() {
     return {
       skuId: "",
-      num:1
+      skuNum:1
     };
   },
   computed: {
@@ -363,11 +363,12 @@ export default {
   methods: {
     //添加到购物车
     async addShopCart(){
-      const {skuId,num}=this
+      const {skuId,skuNum}=this
       try{
-        await this.$store.dispatch('addOrUpdateCart',{skuId,num})
+        await this.$store.dispatch('addOrUpdateCart',{skuId,skuNum})
         alert('添加购物车成功')
-        this.$router.push('/addcartsuccess?skuNum='+this.num)
+        sessionStorage.setItem('SKUINFO_KEY',JSON.stringify(this.skuInfo))
+        this.$router.push('/addcartsuccess?skuNum='+this.skuNum)
       } catch(error){
         alert(error.message)
       }
