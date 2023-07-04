@@ -32,7 +32,7 @@
     },
 
     watch: {
-      imgList() {
+      imgList(newValue,oldValue) {
       
         this.$nextTick(() => {
         
@@ -48,19 +48,19 @@
         });
     },
   },
-    mounted(){ 
-      new Swiper(this.$refs.swiper, {
+    // mounted(){ 
+    //   new Swiper(this.$refs.swiper, {
         
-        // 如果需要前进后退按钮
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        slidesPerView: 3,
-        slidesPerGroup: 3
+    //     // 如果需要前进后退按钮
+    //     navigation: {
+    //       nextEl: ".swiper-button-next",
+    //       prevEl: ".swiper-button-prev",
+    //     },
+    //     slidesPerView: 3,
+    //     slidesPerGroup: 3
 
         
-      });},
+    //   });},
   
     methods:{
       changeIndex(index){

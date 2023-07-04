@@ -1,5 +1,4 @@
 import { reqDetail } from "@/api"
-import { result } from "lodash"
 
 const state={
     detailInfo:{}
@@ -11,7 +10,7 @@ const mutations={
 }
 const actions={
     async getDetailInfo({commit},skuId){
-        result= await reqDetail(skuId)
+        const result= await reqDetail(skuId)
         if(result.code===200){
             commit('RECEIVE_DETAIL',result.data)
         }

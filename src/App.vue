@@ -10,7 +10,7 @@
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-// import { getCategoryList } from './api'
+// import { getCategoryList } from './api'  //用于写完后测试API
          
 
 export default {

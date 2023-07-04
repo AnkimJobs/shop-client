@@ -1,4 +1,4 @@
-import { method, result } from "lodash"
+
 import ajax from "./ajax"
 import mockAjax from './mockAjax'
 
@@ -38,8 +38,50 @@ export const reqAddOrUpdateCart = (skuId,skuNum )=>{
          method:'post'
     })
  }
-   
 
+ // 获取购物车列表
+//  /api/cart/cartList
+// GET
+export const reqShopCartList=()=>{
+    return ajax({
+        url:'cart/cartList',
+        method:'get'
+    })
+}
+//切换商品选中状态
+// /api/cart/checkCart/{skuID}/{isChecked}
+// GET
+export const reqCheckCart=(skuId,isChecked)=>{
+    return ajax({
+        url:`/cart/checkCart/${skuId}/${isChecked}` ,
+        method:'get'
+    })
+}
+// 删除购物车商品
+// /api/cart/deleteCart/{skuId}
+// DELETE
+export const reqDeleteCart=(skuId)=>{
+    return ajax({
+        url:`/cart/deleteCart/${skuId}`,
+        method:'delete'
+    })
+
+}
+// 注册用户
+// /api/user/passport/register
+// POST
+export const reqRegister=(registerParams)=>ajax.post('/user/passport/register')
+
+//登录
+///api/user/passport/login
+//POST
+export const reqLogin=(loginParams)=>ajax.post('/user/passport/login')
+//
+
+//发送手机验证码
+// /api/user/passport/sendCode/${phone}
+//get
+export const reqSendCode=(phone)=>ajax.get(`/user/passport/sendCode/${phone}`)
 
 /* 
 mock接口函数

@@ -8,9 +8,10 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import store from '@/store'
 
 
-
+//添加请求拦截器
 const service = axios.create({
     // baseURL:'http://39.98.123.211:8510/api',
     baseURL:'/api', //用代理
@@ -21,10 +22,17 @@ const service = axios.create({
 service.interceptors.request.use((config)=>{
 
     NProgress.start();
+    let userTempId = store.state.user.userTempId
+    if ( userTempId ){ 
+        //此处的名字需要和后端商量好
+        config.headers.userTempId=userTempId
+
+    }
 
     return config
 
 })
+//添加响应拦截器
 service.interceptors.response.use(
     response =>{
         NProgress.done();
