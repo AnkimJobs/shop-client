@@ -67,12 +67,14 @@
               </ul>
             </div>
           </div>
-          <div class="goods-list">
+          <div class="goods-list"> 
             <ul class="yui3-g">
               <li class="yui3-u-1-5" v-for="goods in goodsList" :key="goods .id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <router-link :to="`/detail/${goods.id}`" > <img :src="goods.defaultImg" /></router-link>
+                    <router-link :to="`/detail/${goods.id}`" > <img v-lazy="goods.defaultImg" /></router-link>
+                    <!-- <router-link :to="`/detail/${goods.id}`" > <img :src="goods.defaultImg" /></router-link> -->
+
                     <!-- <a href="javascript:" ><img :src="goods.defaultImg" /></a> -->
                   </div>
                   <div class="price">
@@ -91,8 +93,8 @@
                     <i class="command">已有<span>2000</span>人评价</i>
                   </div>
                   <div class="operate">
-                    <a href="success-cart.html" target="_blank" class="sui-btn btn-bordered btn-danger">加入购物车</a>
-                    <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a>
+                    <a href="javascript:;"  class="sui-btn btn-bordered btn-danger">自营</a>
+                    <!-- <a href="javascript:void(0);" class="sui-btn btn-bordered">收藏</a> -->
                   </div>
                 </div>
               </li>
@@ -100,7 +102,7 @@
             </ul>
           </div>
           
-          <Pagination
+          <MyPagination
             :currentPage="options.pageNo"
             :total="total"
             :pageSize="options.pageSize"

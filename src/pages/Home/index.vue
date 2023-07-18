@@ -29,6 +29,8 @@ export default {
     this.$store.dispatch('getLikes')
     this.$store.dispatch('getRanks')
     this.$store.dispatch('getBrands')
+   
+  
 
 
   },

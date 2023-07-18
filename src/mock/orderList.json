@@ -1,0 +1,87 @@
+
+    {
+        "records": [
+            {
+                "id|1-1000": 1,
+                "consignee|1": ["admin","Bob","Lily","Mark"],
+                "consigneeTel": "15011111111",
+                "totalAmount|1": [89080,29098,18090,50590],
+                "orderStatus": "UNPAID",
+                "userId": 2,
+                "paymentWay": "ONLINE",
+                "deliveryAddress": "北京市昌平区2",
+                "orderComment": "",
+                "outTradeNo": "ATGUIGU1584247289311481",
+                "tradeBody": "Apple iPhone 11 (A2223) 128GB手机 双卡双待 A",
+                "createTime": "2020-03-15 12:41:29",
+                "expireTime": "2020-03-16 12:41:29",
+                "processStatus": "UNPAID",
+                "trackingNo": null,
+                "parentOrderId": null,
+                "imgUrl": null,
+                "orderDetailList|1-2": [
+                    {
+                        "id|1-100": 81,
+                        "orderId": 70,
+                        "skuId": 2,
+                        "skuName|1":[" 包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶新款","包邮 Apple iPhone 11 (A2223) 64GB手机 红色","Apple iPhone 11 (A2223) 128GB手机 双卡双待 "],
+                        "imgUrl": "./images/goods.png",
+                        "orderPrice": 5499,
+                        "skuNum": 1,
+                        "hasStock": null
+                    },
+                    {
+                        "id|1-100": 88,
+                        "orderId": 70,
+                        "skuId": 2,
+                        "skuName|1":[" 包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶新款","包邮 Apple iPhone 11 (A2223) 64GB手机 红色","Apple iPhone 11 (A2223) 128GB手机 双卡双待 "],
+                        "imgUrl": "./images/goods.png",
+                        "orderPrice": 5499,
+                        "skuNum": 1,
+                        "hasStock": null
+                    }
+                ],
+                "orderStatusName": "未支付",
+                "wareId": null
+            },
+            {
+                "id|1-1000": 2,
+                "consignee|1": ["admin","Bob","Lily","Mark"],
+                "consigneeTel": "15011111111",
+                "totalAmount|1": [89080,29098,18090,50590],
+                "orderStatus": "UNPAID",
+                "userId": 2,
+                "paymentWay": "ONLINE",
+                "deliveryAddress": "北京市昌平区2",
+                "orderComment": "",
+                "outTradeNo": "ATGUIGU1584247289311481",
+                "tradeBody": "Apple iPhone 11 (A2223) 128GB手机 双卡双待 ",
+                "createTime": "2020-03-15 12:41:29",
+                "expireTime": "2020-03-16 12:41:29",
+                "processStatus": "UNPAID",
+                "trackingNo": null,
+                "parentOrderId": null,
+                "imgUrl": null,
+                "orderDetailList|1-6": [
+                    {
+                        "id|1-100": 81,
+                        "orderId": 70,
+                        "skuId": 2,
+                        "skuName|1":[" 包邮 正品玛姬儿压缩面膜无纺布纸膜100粒 送泡瓶面膜刷喷瓶新款","包邮 Apple iPhone 11 (A2223) 64GB手机 红色","Apple iPhone 11 (A2223) 128GB手机 双卡双待 "],
+                        "imgUrl": "http://192.168.200.128:8080/xxx.jpg",
+                        "orderPrice": 5499,
+                        "skuNum": 1,
+                        "hasStock": null
+                    }
+                
+                ],
+                "orderStatusName": "已支付",
+                "wareId": null
+            }
+        ],
+        "total": 200,
+        "size": 2,
+        "current": 1,
+        "pages": 21
+    }
+   

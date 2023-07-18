@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "userAddress": "北京市昌平区1",
+        "userId": 3,
+        "consignee": "admin1",
+        "phoneNum": "15011111111",
+        "isDefault": "1"
+    },
+    {
+        "id": 2,
+        "userAddress": "北京市昌平区2",
+        "userId": 2,
+        "consignee": "admin2",
+        "phoneNum": "15011111111",
+        "isDefault": "0"
+    }, {
+        "id": 3,
+        "userAddress": "北京市昌平区3",
+        "userId": 3,
+        "consignee": "admin3",
+        "phoneNum": "15011111111",
+        "isDefault": "0"
+    }
+    
+]

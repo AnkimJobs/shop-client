@@ -22,15 +22,18 @@ const service = axios.create({
 service.interceptors.request.use((config)=>{
 
     NProgress.start();
+    //携带临时标识
     let userTempId = store.state.user.userTempId
     if ( userTempId ){ 
         //此处的名字需要和后端商量好
         config.headers.userTempId=userTempId
-
     }
-
+    //携带登录后的标识token
+    let token = store.state.user.token
+    if(token){
+        config.headers.token = token
+    }
     return config
-
 })
 //添加响应拦截器
 service.interceptors.response.use(
